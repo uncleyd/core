@@ -10,9 +10,9 @@ package rdmodels
 import (
 	"github.com/go-redis/redis"
 	"github.com/goinggo/mapstructure"
+	"github.com/uncleyd/core/config"
 	"reflect"
 	"time"
-	"core/config"
 )
 
 var RdClient *redis.Client

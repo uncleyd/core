@@ -3,9 +3,9 @@ package utils
 import (
 	"bytes"
 	"fmt"
+	"github.com/uncleyd/core/config"
 	"log"
 	"net/http"
-	"core/config"
 )
 
 var (

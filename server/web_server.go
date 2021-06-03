@@ -2,11 +2,11 @@ package server
 
 import (
 	"context"
-	"core/config"
-	"core/logger"
-	"core/utils"
 	"fmt"
 	"github.com/gin-gonic/gin"
+	"github.com/uncleyd/core/config"
+	"github.com/uncleyd/core/logger"
+	"github.com/uncleyd/core/utils"
 	"go.uber.org/zap"
 	"net/http"
 	"os"

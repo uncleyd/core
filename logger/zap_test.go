@@ -1,9 +1,9 @@
 package logger
 
 import (
+	"github.com/uncleyd/core/config"
 	"testing"
 	"time"
-	"core/config"
 )
 
 func TestZapLog(t *testing.T) {

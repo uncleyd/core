@@ -1,10 +1,10 @@
 package db
 
 import (
-	"core/config"
-	"core/logger"
 	"fmt"
 	_ "github.com/go-sql-driver/mysql"
+	"github.com/uncleyd/core/config"
+	"github.com/uncleyd/core/logger"
 	"gorm.io/driver/mysql"
 	_ "gorm.io/driver/mysql"
 	"gorm.io/gorm"
@@ -78,9 +78,7 @@ const (
 
 func createORM(cfg *config.MySqlConfig) (*gorm.DB, error) {
 	dsn := fmt.Sprintf(connectFormat, cfg.UserName, cfg.Password, cfg.Host, cfg.DbName)
-	db, err := gorm.Open(mysql.Open(dsn), &gorm.Config{
-
-	})
+	db, err := gorm.Open(mysql.Open(dsn), &gorm.Config{})
 
 	if err != nil {
 		return nil, err

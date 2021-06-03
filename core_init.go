@@ -1,9 +1,9 @@
 package core
 
 import (
-	"core/config"
-	"core/db"
-	"core/logger"
+	"github.com/uncleyd/core/config"
+	"github.com/uncleyd/core/db"
+	"github.com/uncleyd/core/logger"
 )
 
 func Init(cfgPath string) {

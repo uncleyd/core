@@ -2,13 +2,13 @@ package logger
 
 import (
 	rotateLogs "github.com/lestrrat-go/file-rotatelogs"
+	"github.com/uncleyd/core/config"
+	"github.com/uncleyd/core/utils"
 	"go.uber.org/zap"
 	"go.uber.org/zap/zapcore"
 	"io"
 	"path"
 	"time"
-	"core/config"
-	"core/utils"
 )
 
 var Sugar *zap.SugaredLogger

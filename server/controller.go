@@ -1,8 +1,8 @@
 package server
 
 import (
-	"core/logger"
 	"github.com/gin-gonic/gin"
+	"github.com/uncleyd/core/logger"
 	"net/http"
 	"strconv"
 )
@@ -35,12 +35,12 @@ func BuildHandle(handler func(ctx *GinContext)) gin.HandlerFunc {
 
 // 通用请求结构
 type Request struct {
-	Guid      string `form:"guid"`     // 设备id
-	Openid    string `form:"openid"`   // 微信openid
-	Ver       string `form:"ver"`      // APP版本号
-	Bid       string `form:"bid"`      // 应用包名
-	Channel   string `form:"channel" ` // 渠道
-	Chl       string `form:"chl"`      // APP端（ios/android）
+	Guid    string `form:"guid"`     // 设备id
+	Openid  string `form:"openid"`   // 微信openid
+	Ver     string `form:"ver"`      // APP版本号
+	Bid     string `form:"bid"`      // 应用包名
+	Channel string `form:"channel" ` // 渠道
+	Chl     string `form:"chl"`      // APP端（ios/android）
 }
 
 type GinContext struct {
