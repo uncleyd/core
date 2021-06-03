@@ -1,4 +1,4 @@
-module core
+module github.com/uncleyd/core
 
 go 1.15
 
