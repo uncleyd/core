@@ -13,6 +13,7 @@ type AdminConfig struct {
 	Gin       *GinConfig      `json:"gin"`
 	MySql     []*MySqlConfig  `json:"mysql"`
 	Redis     []*RedisConfig  `json:"redis"`
+	Rpcx      RpcxConfig      `json:"rpcx"`
 }
 
 func (a *AdminConfig) IsDebug() bool {
@@ -89,4 +90,9 @@ func (l *LoggerConfig) GetLevel() zapcore.Level {
 	default:
 		return zapcore.DebugLevel
 	}
+}
+
+type RpcxConfig struct {
+	ConsulAddr string `json:"consulAddr"` // consul地址
+	BasePath   string `json:"basePath"`   // 路径
 }
