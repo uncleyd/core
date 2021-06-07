@@ -84,6 +84,8 @@ func (w *WebServer) Run() {
 		}
 	}()
 
+	fmt.Printf("http server Running on %s:%d \n", config.Get().Gin.URL, config.Get().Gin.Port)
+
 	exit(http)
 }
 
