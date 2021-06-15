@@ -37,7 +37,7 @@ func (s consistentHashSelector) Select(ctx context.Context, servicePath, service
 		return ""
 	}
 
-	key := genKey(servicePath, serviceMethod, args.(Req).Data["ip"], args.(Req).Data["guid"])
+	key := genKey(servicePath, serviceMethod, args.(Req).Data["guid"])
 	selected, _ := s.h.Get(key).(string)
 	return selected
 }
