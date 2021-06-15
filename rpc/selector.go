@@ -20,6 +20,10 @@ func newConsistentHashSelector(servers map[string]string) client.Selector {
 	ss := make([]string, 0, len(servers))
 	for k := range servers {
 		ss = append(ss, k)
+	}
+
+	sort.Strings(ss)
+	for _, k := range ss {
 		h.Add(k)
 	}
 
@@ -44,6 +48,10 @@ func (s *consistentHashSelector) UpdateServer(servers map[string]string) {
 		ss := make([]string, 0, len(servers))
 		for k := range servers {
 			ss = append(ss, k)
+		}
+
+		sort.Strings(ss)
+		for _, k := range ss {
 			h.Add(k)
 		}
 

@@ -21,7 +21,6 @@
   <component name="ChangeListManager">
     <list default="true" id="72dd6e08-d9ad-4e01-b658-cb56baad85e8" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rpc/rpc.go" beforeDir="false" afterPath="$PROJECT_DIR$/rpc/rpc.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -104,11 +103,11 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="414" y="175" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1617157902374" />
-    <state x="2478" y="87" key="CommitChangelistDialog2" timestamp="1623717993430">
+    <state x="2478" y="87" key="CommitChangelistDialog2" timestamp="1623718719352">
       <screen x="1920" y="0" width="1920" height="1040" />
     </state>
     <state x="558" y="87" key="CommitChangelistDialog2/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1623053044056" />
-    <state x="2478" y="87" key="CommitChangelistDialog2/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1623717993430" />
+    <state x="2478" y="87" key="CommitChangelistDialog2/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1623718719352" />
     <state x="552" y="253" key="Vcs.Push.Dialog.v2" timestamp="1623053180074">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
