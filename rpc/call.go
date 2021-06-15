@@ -16,6 +16,7 @@ func Init() {
 	basePath = config.Get().Rpcx.BasePath
 }
 
+// 请求单个服务
 func RpcxCall(req, resp interface{}, servicepath, serviceMethod string) error {
 	d, _ := client.NewConsulDiscovery(basePath, servicepath, []string{addr}, nil)
 
@@ -28,6 +29,24 @@ func RpcxCall(req, resp interface{}, servicepath, serviceMethod string) error {
 	xclient.SetSelector(&consistentHashSelector{})
 
 	err := xclient.Call(context.Background(), serviceMethod, req, resp)
+	if err != nil {
+		log.Println("failed to call: %v", err)
+		return err
+	}
+	return nil
+}
+
+// 广播请求所有服务
+func RpcxBroadcast(req, resp interface{}, servicepath, serviceMethod string) error {
+	d, _ := client.NewConsulDiscovery(basePath, servicepath, []string{addr}, nil)
+
+	option := client.DefaultOption
+	option.SerializeType = protocol.JSON
+
+	xclient := client.NewXClient(servicepath, client.Failtry, client.RoundRobin, d, option)
+	defer xclient.Close()
+
+	err := xclient.Broadcast(context.Background(), serviceMethod, req, resp)
 	if err != nil {
 		log.Println("failed to call: %v", err)
 		return err
