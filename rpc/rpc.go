@@ -66,6 +66,7 @@ func GetReq(ctx *gin.Context) Req {
 		"mt":        ctx.Query("mt"),        // 网络类型 默认值2
 		"channel":   ctx.Query("channel"),   // 应用渠道
 		"hw":        ctx.Query("hw"),        // 是否华为设备（1华为，其他非华为）1)
+		"ip":        ctx.ClientIP(),
 	}}
 	return req
 }
