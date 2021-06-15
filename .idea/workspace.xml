@@ -2,8 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="72dd6e08-d9ad-4e01-b658-cb56baad85e8" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/rpc/selector.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/web_server.go" beforeDir="false" afterPath="$PROJECT_DIR$/server/web_server.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rpc/call.go" beforeDir="false" afterPath="$PROJECT_DIR$/rpc/call.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -63,7 +64,8 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="提交修改" />
     <MESSAGE value="提交" />
-    <option name="LAST_COMMIT_MESSAGE" value="提交" />
+    <MESSAGE value="添加打印" />
+    <option name="LAST_COMMIT_MESSAGE" value="添加打印" />
   </component>
   <component name="VgoProject">
     <integration-enabled>true</integration-enabled>
@@ -73,17 +75,33 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="414" y="175" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1617157902374" />
-    <state x="558" y="87" key="CommitChangelistDialog2" timestamp="1623052423720">
+    <state x="558" y="87" key="CommitChangelistDialog2" timestamp="1623053044056">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="558" y="87" key="CommitChangelistDialog2/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1623052423720" />
-    <state x="552" y="253" key="Vcs.Push.Dialog.v2" timestamp="1622684989679">
+    <state x="558" y="87" key="CommitChangelistDialog2/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1623053044056" />
+    <state x="552" y="253" key="Vcs.Push.Dialog.v2" timestamp="1623053180074">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="552" y="253" key="Vcs.Push.Dialog.v2/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1622684989679" />
-    <state x="976" y="214" width="596" height="536" key="find.popup" timestamp="1622686595691">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state x="552" y="253" key="Vcs.Push.Dialog.v2/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1623053180074" />
+    <state x="2896" y="214" width="596" height="536" key="find.popup" timestamp="1623209035849">
+      <screen x="1920" y="0" width="1920" height="1040" />
     </state>
     <state x="976" y="214" width="596" height="536" key="find.popup/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1622686595691" />
+    <state x="2896" y="214" width="596" height="536" key="find.popup/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1623209035849" />
+    <state x="682" y="431" key="vcs.readOnlyHandler.ReadOnlyStatusDialog" timestamp="1623312097578">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="682" y="431" key="vcs.readOnlyHandler.ReadOnlyStatusDialog/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1623312097578" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="DlvLineBreakpoint">
+          <url>file://$PROJECT_DIR$/../../pkg/mod/github.com/smallnest/rpcx@v1.6.2/client/xclient.go</url>
+          <line>206</line>
+          <option name="timeStamp" value="3" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>
