@@ -28,11 +28,21 @@ func Success(ctx *gin.Context, v interface{}) {
 }
 
 //请求失败的时候, 使用该方法返回信息
-func Failed(ctx *gin.Context, v interface{}) {
+func Failed(ctx *gin.Context, msg string) {
 	ctx.JSON(http.StatusOK, map[string]interface{}{
 		"code": MSG_ERR,
 		"data": nil,
-		"msg":  v,
+		"msg":  msg,
+	})
+}
+
+//请求成功的时候 使用该方法返回信息
+func jsonList(ctx *gin.Context, count int, data interface{}) {
+	ctx.JSON(http.StatusOK, map[string]interface{}{
+		"code":  MSG_OK,
+		"msg":   "",
+		"count": count,
+		"data":  data,
 	})
 }
 
@@ -46,6 +56,10 @@ func SuccessHtml(ctx *gin.Context, html, title string) {
 // 重定向
 func SuccessRedirect(ctx *gin.Context, html string) {
 	ctx.Redirect(http.StatusFound, html)
+}
+
+func HTML(ctx *gin.Context, name string, obj interface{}) {
+	ctx.HTML(http.StatusOK, name, obj)
 }
 
 // 获取用户IP地址
@@ -77,6 +91,11 @@ type Req struct {
 
 type Resp struct {
 	Data interface{}
+}
+
+type RespJsonList struct {
+	Count int
+	Data  interface{}
 }
 
 type RespMap map[string]interface{}
@@ -128,4 +147,99 @@ func RpcxReqModelEx(ctx *gin.Context, servicepath, serviceMethod string, p []str
 	}
 
 	Success(ctx, resp.Data)
+}
+
+func RpcxReqModelJsonList(ctx *gin.Context, servicepath, serviceMethod string, p []string) {
+	req := Req{
+		Data: map[string]interface{}{},
+	}
+
+	// 接口专用参数
+	if p != nil {
+		for _, v := range p {
+			req.Data[v] = ctx.Query(v)
+		}
+	}
+
+	var resp = &RespJsonList{}
+
+	err := RpcxCall(req, resp, servicepath, serviceMethod)
+	if err != nil {
+		Failed(ctx, err.Error())
+		return
+	}
+
+	jsonList(ctx, resp.Count, resp.Data)
+}
+
+// 请求单个服务
+func RpcxReqAdminModel(ctx *gin.Context, servicepath, serviceMethod string, p []string) {
+	req := Req{
+		Data: map[string]interface{}{},
+	}
+
+	// 接口专用参数
+	if p != nil {
+		for _, v := range p {
+			req.Data[v] = ctx.Query(v)
+		}
+	}
+
+	var resp = &Resp{}
+
+	err := RpcxAdminCall(req, resp, servicepath, serviceMethod)
+	if err != nil {
+		Failed(ctx, err.Error())
+		return
+	}
+
+	Success(ctx, resp.Data)
+}
+
+// 广播请求所有服务
+func RpcxReqBroadcastModel(ctx *gin.Context, servicepath, serviceMethod string, p []string) {
+	req := Req{
+		Data: map[string]interface{}{},
+	}
+
+	// 接口专用参数
+	if p != nil {
+		for _, v := range p {
+			req.Data[v] = ctx.Query(v)
+		}
+	}
+
+	var resp = &Resp{}
+
+	err := RpcxBroadcast(req, resp, servicepath, serviceMethod)
+	if err != nil {
+		Failed(ctx, err.Error())
+		return
+	}
+
+	Success(ctx, resp.Data)
+}
+
+// 请求单个服务返回HTML
+func RpcxReqAdminModelHtml(ctx *gin.Context, servicepath, serviceMethod string, p []string, name string) {
+	req := Req{
+		Data: map[string]interface{}{},
+	}
+
+	// 接口专用参数
+	if p != nil {
+		for _, v := range p {
+			req.Data[v] = ctx.Query(v)
+		}
+	}
+
+	var resp = &Resp{}
+
+	err := RpcxAdminCall(req, resp, servicepath, serviceMethod)
+	if err != nil {
+		Failed(ctx, err.Error())
+		return
+	}
+
+	HTML(ctx, name, resp.Data)
 }

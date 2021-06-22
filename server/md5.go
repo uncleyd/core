@@ -21,19 +21,22 @@ const (
 
 // MD5 組合加密
 func SetUp() gin.HandlerFunc {
-
 	return func(c *gin.Context) {
-		err := verifySign(c)
-		if err != nil {
-			ctx := GinContext{
-				Context: c,
-			}
-			ctx.JSON(err.Error(), nil)
-			c.Abort()
-			return
-		}
 		c.Next()
 	}
+
+	//return func(c *gin.Context) {
+	//	err := verifySign(c)
+	//	if err != nil {
+	//		ctx := GinContext{
+	//			Context: c,
+	//		}
+	//		ctx.JSON(err.Error(), nil)
+	//		c.Abort()
+	//		return
+	//	}
+	//	c.Next()
+	//}
 }
 
 // 驗證簽名
