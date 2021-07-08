@@ -81,7 +81,7 @@ func DefaultLimitReachedHandler(c *gin.Context) {
 	req := c.Request
 	ip := limiter.GetIP(req, opt)
 
-	sugar.Debugf("Too Many Requests from '%s' on '%s',bid:'%s', guid:'%s' ", ip, c.Request.URL.Path, bid, guid)
+	sugar.Errorf("Too Many Requests from '%s' on '%s',bid:'%s', guid:'%s' ", ip, c.Request.URL.Path, bid, guid)
 	// 加小黑屋
 	rdmodels.SetBlackList(guid, times)
 

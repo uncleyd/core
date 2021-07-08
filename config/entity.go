@@ -58,6 +58,7 @@ type GinConfig struct {
 	URL                string `json:"url"`
 	Port               int    `json:"port"`
 	IsApi              bool   `json:"is_api"`
+	JwtSecret          string `json:"jwt_secret"`
 }
 
 type LoggerConfig struct {

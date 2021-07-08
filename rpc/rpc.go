@@ -2,65 +2,10 @@ package rpc
 
 import (
 	"github.com/gin-gonic/gin"
-	"net/http"
+	"github.com/uncleyd/core/logger"
+	"github.com/uncleyd/core/pkg/message"
+	"github.com/uncleyd/core/server"
 )
-
-var SERVER *gin.Engine
-
-func init() {
-	SERVER = gin.Default()
-}
-
-const (
-	MSG_OK          = 0
-	MSG_ERR         = -1
-	MSG_ERR_REQUEST = -2
-	MSG_ERR_SYNC    = -3
-)
-
-//请求成功的时候 使用该方法返回信息
-func Success(ctx *gin.Context, v interface{}) {
-	ctx.JSON(http.StatusOK, map[string]interface{}{
-		"code": MSG_OK,
-		"msg":  "",
-		"data": v,
-	})
-}
-
-//请求失败的时候, 使用该方法返回信息
-func Failed(ctx *gin.Context, msg string) {
-	ctx.JSON(http.StatusOK, map[string]interface{}{
-		"code": MSG_ERR,
-		"data": nil,
-		"msg":  msg,
-	})
-}
-
-//请求成功的时候 使用该方法返回信息
-func jsonList(ctx *gin.Context, count int, data interface{}) {
-	ctx.JSON(http.StatusOK, map[string]interface{}{
-		"code":  MSG_OK,
-		"msg":   "",
-		"count": count,
-		"data":  data,
-	})
-}
-
-// 返回页面
-func SuccessHtml(ctx *gin.Context, html, title string) {
-	ctx.HTML(http.StatusOK, html, gin.H{
-		"title": title,
-	})
-}
-
-// 重定向
-func SuccessRedirect(ctx *gin.Context, html string) {
-	ctx.Redirect(http.StatusFound, html)
-}
-
-func HTML(ctx *gin.Context, name string, obj interface{}) {
-	ctx.HTML(http.StatusOK, name, obj)
-}
 
 // 获取用户IP地址
 
@@ -85,23 +30,9 @@ func GetReq(ctx *gin.Context) Req {
 	return req
 }
 
-type Req struct {
-	Data map[string]interface{}
-}
-
-type Resp struct {
-	Data interface{}
-}
-
-type RespJsonList struct {
-	Count int
-	Data  interface{}
-}
-
-type RespMap map[string]interface{}
-
-func RpcxReqModel(ctx *gin.Context, servicepath, serviceMethod string, p []string) {
-	req := GetReq(ctx)
+func RpcxReqModel(ctx *server.GinContext, servicepath, serviceMethod string, p []string) {
+	logger.Sugar.Debugf("%v:%v  on '%s'", servicepath, serviceMethod, ctx.Context.Request.URL.String())
+	req := GetReq(ctx.Context)
 
 	// 接口专用参数
 	if p != nil {
@@ -114,15 +45,17 @@ func RpcxReqModel(ctx *gin.Context, servicepath, serviceMethod string, p []strin
 
 	err := RpcxCall(req, resp, servicepath, serviceMethod)
 	if err != nil {
-		Failed(ctx, err.Error())
+		logger.Sugar.Errorf("%v:%v  on '%s' err:%v", servicepath, serviceMethod, ctx.Context.Request.URL.String(), err)
+		message.Failed(ctx.Context, err.Error())
 		return
 	}
 
-	Success(ctx, resp.Data)
+	message.Success(ctx.Context, resp.Data)
 }
 
-func RpcxReqModelEx(ctx *gin.Context, servicepath, serviceMethod string, p []string, m map[string]interface{}) {
-	req := GetReq(ctx)
+func RpcxReqModelEx(ctx *server.GinContext, servicepath, serviceMethod string, p []string, m map[string]interface{}) {
+	logger.Sugar.Debugf("%v:%v  on '%s'", servicepath, serviceMethod, ctx.Context.Request.URL.String())
+	req := GetReq(ctx.Context)
 
 	// 接口专用参数
 	if p != nil {
@@ -142,14 +75,16 @@ func RpcxReqModelEx(ctx *gin.Context, servicepath, serviceMethod string, p []str
 
 	err := RpcxCall(req, resp, servicepath, serviceMethod)
 	if err != nil {
-		Failed(ctx, err.Error())
+		logger.Sugar.Errorf("%v:%v  on '%s' err:%v", servicepath, serviceMethod, ctx.Context.Request.URL.String(), err)
+		message.Failed(ctx.Context, err.Error())
 		return
 	}
-
-	Success(ctx, resp.Data)
+	message.Success(ctx.Context, resp.Data)
 }
 
-func RpcxReqModelJsonList(ctx *gin.Context, servicepath, serviceMethod string, p []string) {
+// 后台使用
+func RpcxReqModelJsonList(ctx *server.GinContext, servicepath, serviceMethod string, p []string) {
+	logger.Sugar.Debugf("%v:%v  on '%s'", servicepath, serviceMethod, ctx.Context.Request.URL.String())
 	req := Req{
 		Data: map[string]interface{}{},
 	}
@@ -165,15 +100,16 @@ func RpcxReqModelJsonList(ctx *gin.Context, servicepath, serviceMethod string, p
 
 	err := RpcxCall(req, resp, servicepath, serviceMethod)
 	if err != nil {
-		Failed(ctx, err.Error())
+		logger.Sugar.Errorf("%v:%v  on '%s' err:%v", servicepath, serviceMethod, ctx.Context.Request.URL.String(), err)
+		message.Failed(ctx.Context, err.Error())
 		return
 	}
-
-	jsonList(ctx, resp.Count, resp.Data)
+	message.JsonList(ctx.Context, resp.Code, resp.Count, resp.Data)
 }
 
-// 请求单个服务
-func RpcxReqAdminModel(ctx *gin.Context, servicepath, serviceMethod string, p []string) {
+// 后台请求单个服务
+func RpcxReqAdminModel(ctx *server.GinContext, servicepath, serviceMethod string, p []string) {
+	logger.Sugar.Debugf("%v:%v  on '%s'", servicepath, serviceMethod, ctx.Context.Request.URL.String())
 	req := Req{
 		Data: map[string]interface{}{},
 	}
@@ -189,15 +125,16 @@ func RpcxReqAdminModel(ctx *gin.Context, servicepath, serviceMethod string, p []
 
 	err := RpcxAdminCall(req, resp, servicepath, serviceMethod)
 	if err != nil {
-		Failed(ctx, err.Error())
+		logger.Sugar.Errorf("%v:%v  on '%s' err:%v", servicepath, serviceMethod, ctx.Context.Request.URL.String(), err)
+		message.Failed(ctx.Context, err.Error())
 		return
 	}
-
-	Success(ctx, resp.Data)
+	message.JSON(ctx.Context, resp.Code, resp.Msg, resp.Data)
 }
 
 // 广播请求所有服务
-func RpcxReqBroadcastModel(ctx *gin.Context, servicepath, serviceMethod string, p []string) {
+func RpcxReqBroadcastModel(ctx *server.GinContext, servicepath, serviceMethod string, p []string) {
+	logger.Sugar.Debugf("%v:%v  on '%s'", servicepath, serviceMethod, ctx.Context.Request.URL.String())
 	req := Req{
 		Data: map[string]interface{}{},
 	}
@@ -213,15 +150,16 @@ func RpcxReqBroadcastModel(ctx *gin.Context, servicepath, serviceMethod string, 
 
 	err := RpcxBroadcast(req, resp, servicepath, serviceMethod)
 	if err != nil {
-		Failed(ctx, err.Error())
+		logger.Sugar.Errorf("%v:%v  on '%s' err:%v", servicepath, serviceMethod, ctx.Context.Request.URL.String(), err)
+		message.Failed(ctx.Context, err.Error())
 		return
 	}
-
-	Success(ctx, resp.Data)
+	message.JSON(ctx.Context, resp.Code, resp.Msg, resp.Data)
 }
 
 // 请求单个服务返回HTML
-func RpcxReqAdminModelHtml(ctx *gin.Context, servicepath, serviceMethod string, p []string, name string) {
+func RpcxReqAdminModelHtml(ctx *server.GinContext, servicepath, serviceMethod string, p []string, name string) {
+	logger.Sugar.Debugf("%v:%v  on '%s'", servicepath, serviceMethod, ctx.Context.Request.URL.String())
 	req := Req{
 		Data: map[string]interface{}{},
 	}
@@ -237,9 +175,9 @@ func RpcxReqAdminModelHtml(ctx *gin.Context, servicepath, serviceMethod string, 
 
 	err := RpcxAdminCall(req, resp, servicepath, serviceMethod)
 	if err != nil {
-		Failed(ctx, err.Error())
+		logger.Sugar.Errorf("%v:%v  on '%s' err:%v", servicepath, serviceMethod, ctx.Context.Request.URL.String(), err)
+		message.Failed(ctx.Context, err.Error())
 		return
 	}
-
-	HTML(ctx, name, resp.Data)
+	message.HTML(ctx.Context, name, resp.Data)
 }

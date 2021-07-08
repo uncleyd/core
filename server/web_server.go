@@ -3,6 +3,7 @@ package server
 import (
 	"context"
 	"fmt"
+	//"github.com/gin-contrib/pprof"
 	"github.com/gin-gonic/gin"
 	"github.com/uncleyd/core/config"
 	"github.com/uncleyd/core/logger"
@@ -32,6 +33,7 @@ func New() *WebServer {
 	if cfg.Debug {
 		gin.SetMode(gin.DebugMode)
 		ws.Engine = gin.Default()
+		//pprof.Register(ws.Engine,"dev/pprof")
 		ws.Engine.Use(RedisLimit())
 	} else {
 		gin.SetMode(gin.ReleaseMode)
@@ -115,14 +117,3 @@ func (w *WebServer) AddController(controllers ...IController) {
 func (w *WebServer) Do(f func(s *gin.Engine)) {
 	f(w.Engine)
 }
-
-//func BindQuery(ctx *GinContext) gin.HandlerFunc {
-//	if err := ctx.ShouldBindQuery(ctx.Request); err != nil {
-//		ctx.Error(err.Error())
-//		return nil
-//	}
-//
-//	return func(c *gin.Context) {
-//		c.Next()
-//	}
-//}

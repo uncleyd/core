@@ -7,7 +7,7 @@ import (
 	"strconv"
 )
 
-//web server instance
+//message server instance
 var Web *WebServer
 
 type IController interface {
@@ -28,6 +28,7 @@ func BuildHandle(handler func(ctx *GinContext)) gin.HandlerFunc {
 		context.Context = c
 		context.AuthCookie = &AuthCookie{}
 		context.AuthCookie.Parse(context)
+		//context.Request = &Request{}
 		c.BindQuery(&context.Request)
 		handler(context)
 	}

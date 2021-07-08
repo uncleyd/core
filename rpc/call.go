@@ -20,6 +20,8 @@ func Init() {
 func RpcxCall(req, resp interface{}, servicepath, serviceMethod string) error {
 	d, _ := client.NewConsulDiscovery(basePath, servicepath, []string{addr}, nil)
 
+	//fmt.Println("-------请求单个服务:", servicepath+"/"+serviceMethod, d.GetServices()[0])
+
 	option := client.DefaultOption
 	option.SerializeType = protocol.JSON
 
@@ -40,6 +42,8 @@ func RpcxCall(req, resp interface{}, servicepath, serviceMethod string) error {
 func RpcxBroadcast(req, resp interface{}, servicepath, serviceMethod string) error {
 	d, _ := client.NewConsulDiscovery(basePath, servicepath, []string{addr}, nil)
 
+	//fmt.Println("-------广播请求所有服务:", servicepath+"/"+serviceMethod, d.GetServices()[0])
+
 	option := client.DefaultOption
 	option.SerializeType = protocol.JSON
 
@@ -54,9 +58,11 @@ func RpcxBroadcast(req, resp interface{}, servicepath, serviceMethod string) err
 	return nil
 }
 
-// 请求单个服务
+// 后台请求单个服务
 func RpcxAdminCall(req, resp interface{}, servicepath, serviceMethod string) error {
 	d, _ := client.NewConsulDiscovery(basePath, servicepath, []string{addr}, nil)
+
+	//fmt.Println("-------后台请求单个服务:", servicepath+"/"+serviceMethod, d.GetServices()[0])
 
 	option := client.DefaultOption
 	option.SerializeType = protocol.JSON

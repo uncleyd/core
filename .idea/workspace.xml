@@ -20,10 +20,21 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="72dd6e08-d9ad-4e01-b658-cb56baad85e8" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/pkg/cache/cache.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pkg/e/code.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pkg/e/msg.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pkg/jwt/jwt.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/rpc/args.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/entity.go" beforeDir="false" afterPath="$PROJECT_DIR$/config/entity.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/go.mod" beforeDir="false" afterPath="$PROJECT_DIR$/go.mod" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/go.sum" beforeDir="false" afterPath="$PROJECT_DIR$/go.sum" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/rpc/call.go" beforeDir="false" afterPath="$PROJECT_DIR$/rpc/call.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/rpc/rpc.go" beforeDir="false" afterPath="$PROJECT_DIR$/rpc/rpc.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/md5.go" beforeDir="false" afterPath="$PROJECT_DIR$/server/md5.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rpc/server.go" beforeDir="false" afterPath="$PROJECT_DIR$/rpc/server.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/controller.go" beforeDir="false" afterPath="$PROJECT_DIR$/server/controller.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/limit.go" beforeDir="false" afterPath="$PROJECT_DIR$/server/limit.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/web_server.go" beforeDir="false" afterPath="$PROJECT_DIR$/server/web_server.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -70,9 +81,13 @@
     <property name="go.import.settings.migrated" value="true" />
     <property name="go.sdk.automatically.set" value="true" />
     <property name="go.tried.to.enable.integration.vgo.integrator" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../coin_server" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../coin_api" />
   </component>
   <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\gomod\src\core" />
+      <recent name="D:\gomod\src\core\pkg" />
+    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="D:\gomod\src\core\rpc" />
     </key>
@@ -112,10 +127,10 @@
     </state>
     <state x="558" y="87" key="CommitChangelistDialog2/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1623053044056" />
     <state x="2478" y="87" key="CommitChangelistDialog2/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1623745524831" />
-    <state x="740" y="275" key="FileChooserDialogImpl" timestamp="1624005326452">
+    <state x="740" y="275" key="FileChooserDialogImpl" timestamp="1625556792220">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="740" y="275" key="FileChooserDialogImpl/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1624005326452" />
+    <state x="740" y="275" key="FileChooserDialogImpl/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1625556792220" />
     <state x="552" y="253" key="Vcs.Push.Dialog.v2" timestamp="1623053180074">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -125,10 +140,10 @@
     </state>
     <state x="976" y="214" width="596" height="536" key="find.popup/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1622686595691" />
     <state x="2896" y="214" width="596" height="536" key="find.popup/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1623209035849" />
-    <state x="682" y="431" key="vcs.readOnlyHandler.ReadOnlyStatusDialog" timestamp="1623312097578">
+    <state x="682" y="431" key="vcs.readOnlyHandler.ReadOnlyStatusDialog" timestamp="1624603014236">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="682" y="431" key="vcs.readOnlyHandler.ReadOnlyStatusDialog/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1623312097578" />
+    <state x="682" y="431" key="vcs.readOnlyHandler.ReadOnlyStatusDialog/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1624603014236" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
