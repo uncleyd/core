@@ -20,21 +20,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="72dd6e08-d9ad-4e01-b658-cb56baad85e8" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/pkg/cache/cache.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pkg/e/code.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pkg/e/msg.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pkg/jwt/jwt.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/rpc/args.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/entity.go" beforeDir="false" afterPath="$PROJECT_DIR$/config/entity.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/go.mod" beforeDir="false" afterPath="$PROJECT_DIR$/go.mod" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/go.sum" beforeDir="false" afterPath="$PROJECT_DIR$/go.sum" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rpc/call.go" beforeDir="false" afterPath="$PROJECT_DIR$/rpc/call.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rpc/rpc.go" beforeDir="false" afterPath="$PROJECT_DIR$/rpc/rpc.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rpc/server.go" beforeDir="false" afterPath="$PROJECT_DIR$/rpc/server.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/controller.go" beforeDir="false" afterPath="$PROJECT_DIR$/server/controller.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/limit.go" beforeDir="false" afterPath="$PROJECT_DIR$/server/limit.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/web_server.go" beforeDir="false" afterPath="$PROJECT_DIR$/server/web_server.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -122,10 +108,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="414" y="175" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1617157902374" />
-    <state x="2478" y="87" key="CommitChangelistDialog2" timestamp="1623745524831">
-      <screen x="1920" y="0" width="1920" height="1040" />
+    <state x="558" y="87" key="CommitChangelistDialog2" timestamp="1625733123030">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="558" y="87" key="CommitChangelistDialog2/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1623053044056" />
+    <state x="558" y="87" key="CommitChangelistDialog2/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1625733123030" />
     <state x="2478" y="87" key="CommitChangelistDialog2/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1623745524831" />
     <state x="740" y="275" key="FileChooserDialogImpl" timestamp="1625556792220">
       <screen x="0" y="0" width="1920" height="1040" />
