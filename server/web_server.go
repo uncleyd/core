@@ -34,13 +34,17 @@ func New() *WebServer {
 		gin.SetMode(gin.DebugMode)
 		ws.Engine = gin.Default()
 		//pprof.Register(ws.Engine,"dev/pprof")
-		ws.Engine.Use(RedisLimit())
+		//ws.Engine.Use(RedisLimit())
 	} else {
 		gin.SetMode(gin.ReleaseMode)
 		ws.Engine = gin.New()
 		ws.Engine.Use(gin.Recovery()) //logger.WriteFile(),
+		//ws.Engine.Use(RedisLimit())
+	}
+	if cfg.Limit.Status{
 		ws.Engine.Use(RedisLimit())
 	}
+	
 
 	if !cfg.Gin.IsApi {
 		var files []string

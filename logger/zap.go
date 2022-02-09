@@ -15,7 +15,7 @@ var Sugar *zap.SugaredLogger
 
 func NewZap(cfg *config.LoggerConfig) {
 	if cfg.IsWriteFile {
-		NewFileZap(
+		Sugar = NewFileZap(
 			cfg.Path,
 			cfg.GetFileName(),
 			cfg.MaxAge,
@@ -23,11 +23,25 @@ func NewZap(cfg *config.LoggerConfig) {
 			cfg.GetLevel(),
 		)
 	} else {
-		newConsoleZap(cfg)
+		Sugar = newConsoleZap(cfg)
 	}
 }
 
-func newConsoleZap(cfg *config.LoggerConfig) {
+func NewLogger(cfg *config.LoggerConfig) *zap.SugaredLogger {
+	if cfg.IsWriteFile {
+		return NewFileZap(
+			cfg.Path,
+			cfg.GetFileName(),
+			cfg.MaxAge,
+			cfg.RotationHour,
+			cfg.GetLevel(),
+		)
+	} else {
+		return newConsoleZap(cfg)
+	}
+}
+
+func newConsoleZap(cfg *config.LoggerConfig) *zap.SugaredLogger {
 	dev := zap.NewDevelopmentConfig()
 	dev.Level = zap.NewAtomicLevelAt(cfg.GetLevel())
 	dev.EncoderConfig.EncodeTime = func(t time.Time, enc zapcore.PrimitiveArrayEncoder) {
@@ -39,11 +53,11 @@ func newConsoleZap(cfg *config.LoggerConfig) {
 		panic(err)
 	}
 
-	Sugar = builder.Sugar()
+	return builder.Sugar()
 }
 
 // NewFileZap create a file output rule for log
-func NewFileZap(filePath, fileName string, maxAge, rotationHour int, level zapcore.Level) {
+func NewFileZap(filePath, fileName string, maxAge, rotationHour int, level zapcore.Level) *zap.SugaredLogger {
 	utils.CheckPath(filePath)
 
 	encoder := zapcore.NewConsoleEncoder(zapcore.EncoderConfig{
@@ -61,7 +75,7 @@ func NewFileZap(filePath, fileName string, maxAge, rotationHour int, level zapco
 		},
 	})
 
-	Sugar = zap.New(zapcore.NewTee(
+	return zap.New(zapcore.NewTee(
 		zapcore.NewCore(encoder,
 			zapcore.AddSync(getWriter(filePath, fileName, maxAge, rotationHour)),
 			zap.NewAtomicLevelAt(level),

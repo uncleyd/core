@@ -20,7 +20,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="72dd6e08-d9ad-4e01-b658-cb56baad85e8" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/git.bat" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pkg/reflect/reflect_test.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/entity.go" beforeDir="false" afterPath="$PROJECT_DIR$/config/entity.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/db/init.go" beforeDir="false" afterPath="$PROJECT_DIR$/db/init.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pkg/reflect/reflect.go" beforeDir="false" afterPath="$PROJECT_DIR$/pkg/reflect/reflect.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -67,7 +71,7 @@
     <property name="go.import.settings.migrated" value="true" />
     <property name="go.sdk.automatically.set" value="true" />
     <property name="go.tried.to.enable.integration.vgo.integrator" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../coin_api" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../voice" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
@@ -77,6 +81,24 @@
     <key name="CopyFile.RECENT_KEYS">
       <recent name="D:\gomod\src\core\rpc" />
     </key>
+  </component>
+  <component name="RunManager">
+    <configuration name="TestReflect in github.com/uncleyd/core/pkg/reflect" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
+      <module name="core" />
+      <working_directory value="$PROJECT_DIR$/pkg/reflect" />
+      <framework value="gotest" />
+      <kind value="PACKAGE" />
+      <package value="github.com/uncleyd/core/pkg/reflect" />
+      <directory value="$PROJECT_DIR$/" />
+      <filePath value="$PROJECT_DIR$/" />
+      <pattern value="^TestReflect$" />
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Go Test.TestReflect in github.com/uncleyd/core/pkg/reflect" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="2" />
@@ -104,19 +126,19 @@
     <integration-enabled>true</integration-enabled>
   </component>
   <component name="WindowStateProjectService">
-    <state x="414" y="175" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1617157902374">
+    <state x="558" y="87" key="CommitChangelistDialog2" timestamp="1625815599372">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="414" y="175" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1617157902374" />
-    <state x="558" y="87" key="CommitChangelistDialog2" timestamp="1625814926364">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state x="558" y="87" key="CommitChangelistDialog2/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1625814926364" />
+    <state x="558" y="87" key="CommitChangelistDialog2/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1625815599372" />
     <state x="2478" y="87" key="CommitChangelistDialog2/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1623745524831" />
-    <state x="740" y="275" key="FileChooserDialogImpl" timestamp="1625556792220">
+    <state x="184" y="86" key="DiffContextDialog" timestamp="1625815582869">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="740" y="275" key="FileChooserDialogImpl/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1625556792220" />
+    <state x="184" y="86" key="DiffContextDialog/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1625815582869" />
+    <state x="740" y="275" key="FileChooserDialogImpl" timestamp="1625815831477">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="740" y="275" key="FileChooserDialogImpl/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1625815831477" />
     <state x="552" y="253" key="Vcs.Push.Dialog.v2" timestamp="1623053180074">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>

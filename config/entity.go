@@ -21,8 +21,9 @@ func (a *AdminConfig) IsDebug() bool {
 }
 
 type Limit struct {
-	Num   string `json:"num"`
-	Clean int    `json:"clean"`
+	Status bool   `json:"status"` // true打开。false 关闭
+	Num    string `json:"num"`
+	Clean  int    `json:"clean"`
 }
 
 type MySqlConfig struct {
@@ -36,6 +37,7 @@ type MySqlConfig struct {
 	MaxIdleConnect int    `json:"maxIdleConnect"`
 	MaXOpenConnect int    `json:"maxOpenConnect"`
 	LogMode        bool   `json:"logMode"`
+	Charset        string `json:"charset"`
 }
 
 type RedisConfig struct {

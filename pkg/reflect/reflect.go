@@ -40,7 +40,7 @@ func Reflect(re interface{}, data map[string]string) interface{} {
 					fieldVal.SetFloat(intValue)
 				}
 			case reflect.Bool:
-				boolValue := "yes" == value
+				boolValue := ("yes" == value || "true" == value)
 				fieldVal.SetBool(boolValue)
 			case reflect.Slice:
 				if field.Type.Elem().Kind() == reflect.String {

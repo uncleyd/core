@@ -73,11 +73,11 @@ func AdminDB() *gorm.DB {
 }
 
 const (
-	connectFormat = "%s:%s@(%s)/%s?charset=utf8&parseTime=True&loc=Local"
+	connectFormat = "%s:%s@(%s)/%s?charset=%s&parseTime=True&loc=Local"
 )
 
 func createORM(cfg *config.MySqlConfig) (*gorm.DB, error) {
-	dsn := fmt.Sprintf(connectFormat, cfg.UserName, cfg.Password, cfg.Host, cfg.DbName)
+	dsn := fmt.Sprintf(connectFormat, cfg.UserName, cfg.Password, cfg.Host, cfg.DbName,cfg.Charset)
 	db, err := gorm.Open(mysql.Open(dsn), &gorm.Config{})
 
 	if err != nil {
