@@ -1,6 +1,8 @@
 package server
 
 import (
+	"encoding/json"
+	"fmt"
 	"github.com/gin-gonic/gin"
 	"github.com/uncleyd/core/logger"
 	"net/http"
@@ -182,4 +184,40 @@ func (c *GinContext) HTML(name string, obj interface{}) {
 
 func (c *GinContext) Redirect(url string) {
 	c.Context.Redirect(http.StatusMovedPermanently, url)
+}
+
+func (c *GinContext) JsonMsgAndEncrypt(msg string, data interface{}) {
+	resp := gin.H{
+		"code": MSG_OK,
+		"msg":  msg,
+		"data": data,
+	}
+
+	content, err := json.Marshal(resp)
+	if err != nil {
+		http.Error(c.Writer, err.Error(), http.StatusInternalServerError)
+		return
+	}
+	eData := Encrypt(content)
+
+	fmt.Println("eData:", string(eData))
+	c.Context.Writer.WriteString(string(eData))
+}
+func (c *GinContext) ErrorAndEncrypt(msg string) {
+	// 添加错误日志
+	logger.Sugar.Errorf("%v err,err:%v", c.Context.Request.URL, msg)
+
+	resp := gin.H{
+		"code": MSG_ERR,
+		"msg":  msg,
+		"data": nil,
+	}
+
+	content, err := json.Marshal(resp)
+	if err != nil {
+		http.Error(c.Writer, err.Error(), http.StatusInternalServerError)
+		return
+	}
+	
+	c.Context.Writer.WriteString(string(Encrypt(content)))
 }
