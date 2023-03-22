@@ -9,7 +9,7 @@ import (
 	"strconv"
 )
 
-//message server instance
+// message server instance
 var Web *WebServer
 
 type IController interface {
@@ -133,6 +133,15 @@ func (c *GinContext) JSON(value ...interface{}) {
 	})
 }
 
+func (c *GinContext) JSONWithCount(msg string, count int, data interface{}) {
+	c.Context.JSON(http.StatusOK, gin.H{
+		"code":  MSG_OK,
+		"msg":   msg,
+		"data":  data,
+		"count": count,
+	})
+}
+
 func (c *GinContext) JSONS(msg string, count int, data interface{}) {
 	out := make(map[string]interface{})
 	out["msg"] = msg
@@ -218,6 +227,6 @@ func (c *GinContext) ErrorAndEncrypt(msg string) {
 		http.Error(c.Writer, err.Error(), http.StatusInternalServerError)
 		return
 	}
-	
+
 	c.Context.Writer.WriteString(string(Encrypt(content)))
 }
