@@ -31,7 +31,6 @@ import (
 	"strings"
 	"time"
 
-	"github.com/cenkalti/backoff/v4"
 	"github.com/google/go-querystring/query"
 )
 
@@ -420,10 +419,11 @@ func (c *Client) do(ctx context.Context, req *http.Request, v interface{}) (*Res
 			_, err = io.Copy(w, resp.Body)
 		} else {
 
-			err = json.NewDecoder(resp.Body).Decode(v)
-
+			//err = json.NewDecoder(resp.Body).Decode(v)
 			body, _ := io.ReadAll(resp.Body)
 			fmt.Println("body:", string(body))
+			err = json.Unmarshal(body, v)
+			fmt.Println("json.Unmarshal err:", err)
 		}
 	}
 

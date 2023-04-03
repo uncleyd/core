@@ -62,6 +62,10 @@ func (d *Date) UnmarshalJSON(data []byte) error {
 		return err
 	}
 
+	if dateStr == "" {
+		return nil
+	}
+
 	parsed, err := time.Parse(dateFormat, dateStr)
 	if err != nil {
 		return err
@@ -89,6 +93,10 @@ func (d *DateTime) UnmarshalJSON(data []byte) error {
 	err := json.Unmarshal(data, &dateTimeStr)
 	if err != nil {
 		return err
+	}
+
+	if dateTimeStr == "" {
+		return nil
 	}
 
 	parsed, err := time.Parse(time.RFC3339, dateTimeStr)
