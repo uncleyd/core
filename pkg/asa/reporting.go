@@ -94,6 +94,52 @@ type ReportingResponseBody struct {
 	Error             *ErrorResponseBody `json:"error,omitempty"`
 }
 
+// CustomReportRequest
+//
+// https://developer.apple.com/documentation/apple_search_ads/customreportrequest
+type CustomReportRequest struct {
+	DateRange   string                      `json:"dateRange,omitempty"`
+	StartTime   Date                        `json:"startTime,omitempty"`
+	EndTime     Date                        `json:"endTime,omitempty"`
+	Granularity ReportingRequestGranularity `json:"granularity,omitempty"`
+	Name        string                      `json:"name,omitempty"`
+	Selector    *Selector                   `json:"selector,omitempty"`
+}
+
+// CustomReportResponseBody
+//
+// https://developer.apple.com/documentation/apple_search_ads/customreportresponsebody
+type CustomReportResponseBody struct {
+	Data       *CustomReportResponse `json:"data,omitempty"`
+	Pagination *PageDetail             `json:"pagination,omitempty"`
+	Error      *ErrorResponseBody      `json:"error,omitempty"`
+}
+type AllCustomReportResponseBody struct {
+	Data       *[]CustomReportResponse `json:"data,omitempty"`
+	Pagination *PageDetail             `json:"pagination,omitempty"`
+	Error      *ErrorResponseBody      `json:"error,omitempty"`
+}
+
+type CustomReportResponse struct {
+	CreationTime     string   `json:"creationTime,omitempty"`
+	Dimensions       []string `json:"dimensions,omitempty"`
+	DownloadUri      string   `json:"downloadUri,omitempty"`
+	StartTime        string   `json:"startTime,omitempty"`
+	EndTime          string   `json:"endTime,omitempty"`
+	Granularity      string   `json:"granularity,omitempty"`
+	Id               int      `json:"id,omitempty"`
+	Metrics          []string `json:"metrics,omitempty"`
+	ModificationTime []string `json:"modificationTime,omitempty"`
+	Name             string   `json:"name,omitempty"`
+	State            string   `json:"state,omitempty"`
+}
+type GetAllCustomReportsQuery struct {
+	Field     string `json:"field,omitempty"`
+	Limit     int    `json:"limit,omitempty"`
+	Offset    int    `json:"offset,omitempty"`
+	SortOrder string `json:"sortOrder,omitempty"`
+}
+
 // ReportingResponse is a container for report metrics
 //
 // https://developer.apple.com/documentation/apple_search_ads/reportingresponse
@@ -180,6 +226,9 @@ type MetaDataObject struct {
 	CountryOrRegion                    string                                      `json:"countryOrRegion,omitempty"`
 	SearchTermText                     *string                                     `json:"SearchTermText,omitempty"`
 	SearchTermSource                   *SearchTermSource                           `json:"searchTermSource,omitempty"`
+	BidAmount                          *Money                                      `json:"bidAmount,omitempty"`
+	DefaultBidAmount                   *Money                                      `json:"defaultBidAmount,omitempty"`
+	AdGroupStatus                      AdGroupStatus                               `json:"adGroupStatus,omitempty"`
 }
 
 // GrandTotalsRow is the summary of cumulative metrics
@@ -303,6 +352,38 @@ func (s *ReportingService) GetCreativeSetLevelReports(ctx context.Context, campa
 	url := fmt.Sprintf("reports/campaigns/%d/creativesets", campaignID)
 	res := new(ReportingResponseBody)
 	resp, err := s.client.post(ctx, url, &params, res)
+
+	return res, resp, err
+}
+
+func (s *ReportingService) GetSearchTermLevelWithinAnAdGroupReports(ctx context.Context, campaignID, adgroupID int64, params *ReportingRequest) (*ReportingResponseBody, *Response, error) {
+	url := fmt.Sprintf("reports/campaigns/%d/adgroups/%d/searchterms", campaignID, adgroupID)
+	res := new(ReportingResponseBody)
+	resp, err := s.client.post(ctx, url, &params, res)
+
+	return res, resp, err
+}
+
+func (s *ReportingService) GetCustomReports(ctx context.Context, params *CustomReportRequest) (*CustomReportResponseBody, *Response, error) {
+	url := "custom-reports"
+	res := new(CustomReportResponseBody)
+	resp, err := s.client.post(ctx, url, &params, res)
+
+	return res, resp, err
+}
+
+func (s *ReportingService) GetACustomReports(ctx context.Context, reportId int) (*CustomReportResponseBody, *Response, error) {
+	url := fmt.Sprintf("custom-reports/%d", reportId)
+	res := new(CustomReportResponseBody)
+	resp, err := s.client.get(ctx, url, nil, res)
+
+	return res, resp, err
+}
+
+func (s *ReportingService) GetAllCustomReports(ctx context.Context) (*AllCustomReportResponseBody, *Response, error) {
+	url := "custom-reports"
+	res := new(AllCustomReportResponseBody)
+	resp, err := s.client.get(ctx, url, nil, res)
 
 	return res, resp, err
 }

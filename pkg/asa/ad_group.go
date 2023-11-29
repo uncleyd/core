@@ -118,20 +118,20 @@ type Money struct {
 // https://developer.apple.com/documentation/apple_search_ads/adgroup
 type AdGroup struct {
 	AutomatedKeywordsOptIn bool                 `json:"automatedKeywordsOptIn,omitempty"`
-	CampaignID             int64                `json:"campaignID,omitempty"`
+	CampaignID             int64                `json:"campaignId,omitempty"`
 	CpaGoal                *Money               `json:"cpaGoal,omitempty"`
 	DefaultBidAmount       *Money               `json:"defaultBidAmount"`
 	Deleted                bool                 `json:"deleted"`
-	DisplayStatus          AdGroupDisplayStatus `json:"displayStatus"`
-	EndTime                DateTime             `json:"endTime,omitempty"`
+	DisplayStatus          *AdGroupDisplayStatus `json:"displayStatus"`
+	EndTime                *DateTime             `json:"endTime,omitempty"`
 	ID                     int64                `json:"id,omitempty"`
-	ModificationTime       DateTime             `json:"modificationTime,omitempty"`
+	ModificationTime       *DateTime             `json:"modificationTime,omitempty"`
 	Name                   string               `json:"name,omitempty"`
 	OrgID                  int64                `json:"orgId,omitempty"`
 	PricingModel           AdGroupPricingModel  `json:"pricingModel"`
 	ServingStateReasons    []ServingStateReason `json:"servingStateReasons,omitempty"`
-	ServingStatus          AdGroupServingStatus `json:"servingStatus"`
-	StartTime              DateTime             `json:"startTime,omitempty"`
+	ServingStatus          *AdGroupServingStatus `json:"servingStatus"`
+	StartTime              *DateTime             `json:"startTime,omitempty"`
 	Status                 AdGroupStatus        `json:"status,omitempty"`
 	TargetDimensions       *TargetDimensions    `json:"targetDimensions,omitempty"`
 }
@@ -275,9 +275,9 @@ type AdGroupUpdateRequest struct {
 	AutomatedKeywordsOptIn bool              `json:"automatedKeywordsOptIn,omitempty"`
 	CpaGoal                *Money            `json:"cpaGoal,omitempty"`
 	DefaultBidAmount       *Money            `json:"defaultBidAmount,omitempty"`
-	EndTime                DateTime          `json:"endTime,omitempty"`
+	EndTime                *DateTime          `json:"endTime,omitempty"`
 	Name                   string            `json:"name,omitempty"`
-	StartTime              DateTime          `json:"startTime,omitempty"`
+	StartTime              *DateTime          `json:"startTime,omitempty"`
 	Status                 AdGroupStatus     `json:"status,omitempty"`
 	TargetingDimensions    *TargetDimensions `json:"targetingDimensions"`
 }
@@ -412,3 +412,9 @@ func (s *AdGroupService) DeleteAdGroup(ctx context.Context, campaignID int64, ad
 
 	return resp, err
 }
+
+
+
+
+
+

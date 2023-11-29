@@ -55,14 +55,14 @@ type Keyword struct {
 	Deleted          bool             `json:"deleted,omitempty"`
 	ID               int64            `json:"id,omitempty"`
 	MatchType        KeywordMatchType `json:"matchType,omitempty"`
-	ModificationTime DateTime         `json:"modificationTime,omitempty"`
+	ModificationTime *DateTime        `json:"modificationTime,omitempty"`
 	Status           KeywordStatus    `json:"status,omitempty"`
 	Text             string           `json:"text,omitempty"`
 }
 
 // KeywordListResponse defines model for Keyword List Response.
 //
-//https://developer.apple.com/documentation/apple_search_ads/keywordlistresponse
+// https://developer.apple.com/documentation/apple_search_ads/keywordlistresponse
 type KeywordListResponse struct {
 	Keywords   []*Keyword         `json:"data,omitempty"`
 	Error      *ErrorResponseBody `json:"error,omitempty"`
@@ -137,7 +137,9 @@ type KeywordUpdateRequest struct {
 	Deleted          bool             `json:"deleted,omitempty"`
 	ID               int64            `json:"id,omitempty"`
 	MatchType        KeywordMatchType `json:"matchType"`
-	ModificationTime DateTime         `json:"modificationTime"`
+	ModificationTime *DateTime        `json:"modificationTime"`
+	Status           KeywordStatus    `json:"status,omitempty"`
+	Text             string           `json:"text"`
 }
 
 // UpdateTargetingKeywords Updates targeting keywords in ad groups
@@ -147,6 +149,14 @@ func (s *KeywordService) UpdateTargetingKeywords(ctx context.Context, campaignID
 	url := fmt.Sprintf("campaigns/%d/adgroups/%d/targetingkeywords/bulk", campaignID, adGroupID)
 	res := new(KeywordListResponse)
 	resp, err := s.client.put(ctx, url, updateRequests, res)
+
+	return res, resp, err
+}
+
+func (s *KeywordService) DeleteTargetingKeywords(ctx context.Context, campaignID int64, adGroupID int64, KeywordsID []int64) (*IntegerResponse, *Response, error) {
+	url := fmt.Sprintf("campaigns/%d/adgroups/%d/targetingkeywords/delete/bulk", campaignID, adGroupID)
+	res := new(IntegerResponse)
+	resp, err := s.client.post(ctx, url, KeywordsID, res)
 
 	return res, resp, err
 }

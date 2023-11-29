@@ -200,13 +200,13 @@ type Campaign struct {
 	EndTime                            *DateTime                                  `json:"endTime,omitempty"`
 	ID                                 int64                                      `json:"id,omitempty"`
 	LocInvoiceDetails                  *LOCInvoiceDetails                         `json:"locInvoiceDetails,omitempty"`
-	ModificationTime                   DateTime                                   `json:"modificationTime,omitempty"`
+	ModificationTime                   *DateTime                                  `json:"modificationTime,omitempty"`
 	Name                               string                                     `json:"name,omitempty"`
 	OrgID                              int64                                      `json:"orgId,omitempty"`
 	PaymentModel                       PaymentModel                               `json:"paymentModel,omitempty"`
 	ServingStateReasons                []CampaignServingStateReason               `json:"servingStateReasons,omitempty"`
 	ServingStatus                      CampaignServingStatus                      `json:"servingStatus,omitempty"`
-	StartTime                          DateTime                                   `json:"startTime,omitempty"`
+	StartTime                          *DateTime                                  `json:"startTime,omitempty"`
 	Status                             CampaignStatus                             `json:"status,omitempty"`
 	SupplySources                      []CampaignSupplySource                     `json:"supplySources,omitempty"`
 }
@@ -330,13 +330,13 @@ func (s *CampaignService) CreateCampaign(ctx context.Context, campaign *Campaign
 //
 // https://developer.apple.com/documentation/apple_search_ads/campaignupdate
 type CampaignUpdate struct {
-	BudgetAmount       *Money            `json:"budgetAmount,omitempty"`
-	BudgetOrders       int64             `json:"budgetOrders,omitempty"`
-	CountriesOrRegions []string          `json:"countriesOrRegions,omitempty"`
-	DailyBudgetAmount  *Money            `json:"dailyBudgetAmount,omitempty"`
-	LOCInvoiceDetails  LOCInvoiceDetails `json:"locInvoiceDetails,omitempty"`
-	Name               string            `json:"name,omitempty"`
-	Status             *CampaignStatus   `json:"status,omitempty"`
+	BudgetAmount       *Money             `json:"budgetAmount,omitempty"`
+	BudgetOrders       int64              `json:"budgetOrders,omitempty"`
+	CountriesOrRegions []string           `json:"countriesOrRegions,omitempty"`
+	DailyBudgetAmount  *Money             `json:"dailyBudgetAmount,omitempty"`
+	LOCInvoiceDetails  *LOCInvoiceDetails `json:"locInvoiceDetails,omitempty"`
+	Name               string             `json:"name,omitempty"`
+	Status             CampaignStatus     `json:"status,omitempty"`
 }
 
 // UpdateCampaignRequest is the payload properties to clear Geo Targeting from a campaign

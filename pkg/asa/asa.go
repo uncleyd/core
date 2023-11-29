@@ -21,6 +21,7 @@ import (
 	"context"
 	"encoding/json"
 	"fmt"
+	"github.com/cenk/backoff"
 	"io"
 	"log"
 	"net/http"
@@ -35,10 +36,12 @@ import (
 )
 
 const (
+	//defaultBaseURL = "http://8.219.7.107:8089/"
+	//defaultAuthURL = "http://8.219.7.107:8090/"
 	defaultBaseURL  = "https://api.searchads.apple.com/api/v4/"
 	defaultAuthURL  = "https://appleid.apple.com/auth/oauth2/token"
 	userAgent       = "apple-search-ads-go"
-	defaultTimeout  = 30 * time.Second
+	defaultTimeout  = 60 * time.Second
 	headerRateLimit = "X-Rate-Limit"
 )
 
@@ -421,9 +424,9 @@ func (c *Client) do(ctx context.Context, req *http.Request, v interface{}) (*Res
 
 			//err = json.NewDecoder(resp.Body).Decode(v)
 			body, _ := io.ReadAll(resp.Body)
-			fmt.Println("body:", string(body))
-			err = json.Unmarshal(body, v)
-			fmt.Println("json.Unmarshal err:", err)
+			//fmt.Println("body:", string(body))
+			_ = json.Unmarshal(body, v)
+			//fmt.Println("json.Unmarshal err:", err)
 		}
 	}
 
@@ -446,6 +449,7 @@ func checkResponse(r *Response) error {
 	erro := new(ErrorResponse)
 
 	if err == nil && data != nil {
+		fmt.Printf("checkResponse r.statuscode!=200:", string(data))
 		err := json.Unmarshal(data, erro)
 		if err != nil {
 			return err
